@@ -22,18 +22,16 @@ Supports three conversion modes, quality control via CRF, and automatic skipping
 - Automatically skips files that already have an MP4 version in the output folder.
 - Clear progress output and final statistics.
 
-
 ### 🔧 Settings (edit at the top of the file)
-
+```python
 input_path = r""          # folder with source WebM files (empty = current folder)
 output_path = r""         # folder for MP4 results (empty = creates "converted" subfolder)
 mode = "Auto"             # Direct / Frames / Auto
 crf_default = 18          # default quality (18 recommended – visually lossless)
 FFMPEG_PATH = "ffmpeg"    # path to ffmpeg (if not in PATH, specify full path)
-FFPROBE_PATH = "ffprobe"
+FFPROBE_PATH = "ffprobe"  
 ⚠️ Windows paths: Always use r"..." (raw string) to avoid escape sequence errors, e.g. r"C:\Users\Name\Videos".
 
-🖥️ Example Output
 📁 Source folder: D:\video
 📁 Output folder: D:\video\converted
 ⚙️ Conversion mode: Auto
@@ -55,6 +53,7 @@ FFPROBE_PATH = "ffprobe"
    Source WebM: 120.5 MB
    Result MP4: 141.2 MB
    Ratio: 141.2 MB / 120.5 MB = 117.2%
+
 🧪 Testing Version – Webm_To_Mp4_Testing.py
 Includes everything from the basic version, plus a test module that converts one file with different CRF settings and both conversion methods, helping you choose the optimal CRF.
 
@@ -68,6 +67,7 @@ test_cut_mode = "cut"                        # "default" – whole video, "cut" 
 Set test_file_path to a real .webm file.
 
 In the main() function, uncomment these two lines:
+
 #test_quality_comparison()
 #return
 Run the script.
@@ -93,6 +93,7 @@ Saves all generated files in a timestamped subfolder inside the compare folder.
 Prints a summary table with file sizes and percentages.
 
 📈 Example Test Output
+
 🧪 TEST MODE: Comparison of methods and CRF levels
    ✂️ Trimming video (first 30 seconds)...
 ✂️ Video trimmed (mode: cut) -> cut_sample.mp4
@@ -116,18 +117,15 @@ Frames   24   2.1 MB     100.0%
 Frames   18   2.5 MB     119.0%         
 Frames   14   3.3 MB     157.1%         
 
-
 📂 All test files are saved in the folder:
    compare\20250315_143022
    (including the trimmed version of the original video)
    (Open them with any player for visual quality comparison)
 
-
 📦 Requirements
 FFmpeg installed and accessible from the command line (or set FFMPEG_PATH/FFPROBE_PATH to the full executable paths).
 
 Python 3.6+ (only standard libraries used – no extra installations needed).
-
 
 🚀 Running the Scripts
 Save the desired .py file.
@@ -136,23 +134,20 @@ Edit the settings at the top if needed.
 
 Double-click the file or run from terminal:
 
+
 python Webm_To_Mp4_Basic.py
 Follow the console output – the program shows progress and pauses at the end (press Enter to close).
-
-
 
 🙏 Acknowledgements
 Special thanks to @anttiluode for the inspiration behind the three conversion modes (Direct, Frames, Auto).
 His original WebP2Mp4-Converter project (also MIT licensed) introduced the idea of handling problematic WebP animations via frame extraction, which we adapted for WebM videos.
 
-
-
 📝 License
 This project is open-source and available under the MIT License.
 
 
+Русский
 
-Русский:
 
 🎥 Конвертер WebM в MP4
 Два Python-скрипта для пакетной конвертации видео из формата WebM в MP4 с использованием FFmpeg.
@@ -168,15 +163,18 @@ Webm_To_Mp4_Testing.py – включает тестовый модуль для
 Конвертирует все .webm файлы из указанной папки (или текущей) в .mp4.
 
 Три режима:
+
 Direct – быстрая прямая конвертация FFmpeg.
+
 Frames – покадровая обработка (медленно, но надёжно для проблемных файлов).
+
 Auto – сначала пробует Direct, при ошибке переключается на Frames.
 
 Настройка качества через CRF (Constant Rate Factor): меньше значение = выше качество / больше размер.
+
 Автоматический пропуск файлов, для которых уже есть MP4 в выходной папке.
 
 Понятный вывод прогресса и итоговая статистика.
-
 
 🔧 Настройки (в начале файла)
 
@@ -185,10 +183,8 @@ output_path = r""         # папка для результатов (пусто
 mode = "Auto"             # Direct / Frames / Auto
 crf_default = 18          # качество по умолчанию (18 рекомендуется – визуально без потерь)
 FFMPEG_PATH = "ffmpeg"    # путь к ffmpeg (если не в PATH, укажите полный путь)
-FFPROBE_PATH = "ffprobe"
-
-⚠️ При копировании пути с windows используйте особый тип строки - r"...", где вместо ... Ваш путь к папке, скопированный из Windows. Это поможет избежать ошибки, при которой Python воспримет \U или любой другой символ после косой черты в пути к папке как команду. (а ошибка точно будет!)
-
+FFPROBE_PATH = "ffprobe"  
+⚠️ При копировании пути с Windows используйте особый тип строки - r"...", где вместо ... Ваш путь к папке, скопированный из Windows. Это поможет избежать ошибки, при которой Python воспримет \U или любой другой символ после косой черты в пути к папке как команду (а ошибка точно будет!).
 
 🖥️ Пример вывода
 
@@ -213,16 +209,15 @@ FFPROBE_PATH = "ffprobe"
    Исходные WebM: 120.5 МБ
    Результат MP4: 141.2 МБ
    Соотношение: 141.2 МБ / 120.5 МБ = 117.2%
+
 🧪 Версия с тестированием – Webm_To_Mp4_Testing.py
 Включает всё то же, что и базовая версия, плюс тестовый модуль, который конвертирует один файл с разными CRF и обоими методами, помогая выбрать оптимальное значение.
-
 
 ➕ Дополнительные настройки тестирования
 
 test_file_path = r"D:\video\sample.webm"   # путь к .webm файлу для теста
 test_output_dir = r""                       # папка для результатов теста (пусто = создаст "compare" рядом со скриптом)
 test_cut_mode = "cut"                        # "default" – всё видео, "cut" – обрезать первые 30 сек (быстрее)
-
 
 🧪 Как запустить тест
 Укажите реальный путь к .webm файлу в test_file_path.
@@ -232,7 +227,6 @@ test_cut_mode = "cut"                        # "default" – всё видео, 
 #test_quality_comparison()
 #return
 Запустите скрипт.
-
 
 📊 Тестируемые значения CRF
 В тесте используются три значения CRF:
@@ -279,12 +273,10 @@ Frames  24   2.1 МБ     100.0%
 Frames  18   2.5 МБ     119.0%         
 Frames  14   3.3 МБ     157.1%         
 
-
 📂 Все тестовые файлы сохранены в папке:
    compare\20250315_143022
    (включая обрезанную версию исходного видео)
    (Откройте их любым плеером для визуального сравнения качества)
-
 
 📦 Требования к системе
 Установленный FFmpeg (доступный из командной строки, либо пропишите полный путь в FFMPEG_PATH/FFPROBE_PATH).
@@ -298,9 +290,15 @@ Python 3.6+ (используются только стандартные биб
 
 Запустите двойным щелчком или из командной строки:
 
+
 python Webm_To_Mp4_Basic.py
 Следуйте выводу в консоли – программа покажет прогресс и остановится в конце (нажмите Enter для выхода).
 
 🙏 Благодарности
 Особая благодарность @anttiluode за идею трёх режимов конвертации (Direct, Frames, Auto).
 Его оригинальный проект WebP2Mp4-Converter (также под лицензией MIT) познакомил нас с концепцией обработки проблемных WebP-анимаций через покадровое извлечение, которую мы адаптировали для WebM-видео.
+
+📝 Лицензия
+Этот проект является открытым и доступен под лицензией MIT.
+
+P.S. Оказывается писать readme сложнее чем питонировать.
