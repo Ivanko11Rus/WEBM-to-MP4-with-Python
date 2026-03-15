@@ -29,9 +29,11 @@ output_path = r""         # folder for MP4 results (empty = creates "converted" 
 mode = "Auto"             # Direct / Frames / Auto
 crf_default = 18          # default quality (18 recommended – visually lossless)
 FFMPEG_PATH = "ffmpeg"    # path to ffmpeg (if not in PATH, specify full path)
-FFPROBE_PATH = "ffprobe"  
-⚠️ Windows paths: Always use r"..." (raw string) to avoid escape sequence errors, e.g. r"C:\Users\Name\Videos".
+FFPROBE_PATH = "ffprobe" 
+``` 
+**⚠️ Windows paths: Always use r"..." (raw string) to avoid escape sequence errors, e.g. r"C:\Users\Name\Videos".**
 
+```text
 📁 Source folder: D:\video
 📁 Output folder: D:\video\converted
 ⚙️ Conversion mode: Auto
@@ -53,26 +55,30 @@ FFPROBE_PATH = "ffprobe"
    Source WebM: 120.5 MB
    Result MP4: 141.2 MB
    Ratio: 141.2 MB / 120.5 MB = 117.2%
+```
 
-🧪 Testing Version – Webm_To_Mp4_Testing.py
+## 🧪 Testing Version – Webm_To_Mp4_Testing.py
 Includes everything from the basic version, plus a test module that converts one file with different CRF settings and both conversion methods, helping you choose the optimal CRF.
 
 
-➕ Additional Test Settings
-
+### ➕ Additional Test Settings
+```python
 test_file_path = r"D:\video\sample.webm"   # path to a .webm file for testing
 test_output_dir = r""                       # folder for test results (empty = creates "compare" next to script)
 test_cut_mode = "cut"                        # "default" – whole video, "cut" – trim first 30 sec (faster)
-🧪 How to Run the Test
+```
+
+### 🧪 How to Run the Test
 Set test_file_path to a real .webm file.
 
 In the main() function, uncomment these two lines:
-
+```python
 #test_quality_comparison()
 #return
+```
 Run the script.
 
-📊 Tested CRF Values
+### 📊 Tested CRF Values
 The test uses three CRF values:
 
 CRF 24 – size close to original (typically 90–101% of original). Good for a baseline.
@@ -83,7 +89,7 @@ CRF 14 – excessively high quality; file size grows disproportionately, with ne
 
 Both Direct and Frames methods are tested for each CRF.
 
-🔍 What the Test Does
+### 🔍 What the Test Does
 (Optional) Trims the first 30 seconds of the video to speed up testing.
 
 Converts the (trimmed) video with both methods and all three CRF values.
@@ -92,10 +98,12 @@ Saves all generated files in a timestamped subfolder inside the compare folder.
 
 Prints a summary table with file sizes and percentages.
 
-📈 Example Test Output
+### 📈 Example Test Output
 
+```text
 🧪 TEST MODE: Comparison of methods and CRF levels
-   ✂️ Trimming video (first 30 seconds)...
+
+✂️ Trimming video (first 30 seconds)...
 ✂️ Video trimmed (mode: cut) -> cut_sample.mp4
 
 📁 Test file: cut_sample.mp4 (2.1 MB)
@@ -121,73 +129,75 @@ Frames   14   3.3 MB     157.1%
    compare\20250315_143022
    (including the trimmed version of the original video)
    (Open them with any player for visual quality comparison)
+```
 
-📦 Requirements
+### 📦 Requirements
 FFmpeg installed and accessible from the command line (or set FFMPEG_PATH/FFPROBE_PATH to the full executable paths).
 
-Python 3.6+ (only standard libraries used – no extra installations needed).
+Python **3.6+** (only standard libraries used – no extra installations needed).
 
-🚀 Running the Scripts
+### 🚀 Running the Scripts
 Save the desired .py file.
 
 Edit the settings at the top if needed.
 
 Double-click the file or run from terminal:
-
-
+```cmd
 python Webm_To_Mp4_Basic.py
+```
 Follow the console output – the program shows progress and pauses at the end (press Enter to close).
 
-🙏 Acknowledgements
+### 🙏 Acknowledgements
 Special thanks to @anttiluode for the inspiration behind the three conversion modes (Direct, Frames, Auto).
 His original WebP2Mp4-Converter project (also MIT licensed) introduced the idea of handling problematic WebP animations via frame extraction, which we adapted for WebM videos.
 
-📝 License
+### 📝 License
 This project is open-source and available under the MIT License.
 
 
-Русский
+# Русский
 
 
-🎥 Конвертер WebM в MP4
+### 🎥 Конвертер WebM в MP4
 Два Python-скрипта для пакетной конвертации видео из формата WebM в MP4 с использованием FFmpeg.
 Поддерживаются три режима конвертации, настройка качества через CRF и автоматический пропуск уже существующих выходных файлов.
 
-Webm_To_Mp4_Basic.py – простая программа для пакетной конвертации.
+- **`Webm_To_Mp4_Basic.py`** – простая программа для пакетной конвертации.
 
-Webm_To_Mp4_Testing.py – включает тестовый модуль для сравнения разных значений CRF на одном файле.
+- **`Webm_To_Mp4_Testing.py`** – включает тестовый модуль для сравнения разных значений CRF на одном файле.
 
-⚙️ Базовая версия – Webm_To_Mp4_Basic.py
+## ⚙️ Базовая версия – Webm_To_Mp4_Basic.py
 
-📌 Возможности
-Конвертирует все .webm файлы из указанной папки (или текущей) в .mp4.
+### 📌 Возможности
+- Конвертирует все .webm файлы из указанной папки (или текущей) в .mp4.
 
 Три режима:
 
-Direct – быстрая прямая конвертация FFmpeg.
+- **Direct** – быстрая прямая конвертация FFmpeg.
 
-Frames – покадровая обработка (медленно, но надёжно для проблемных файлов).
+- **Frames** – покадровая обработка (медленно, но надёжно для проблемных файлов).
 
-Auto – сначала пробует Direct, при ошибке переключается на Frames.
+- **Auto** – сначала пробует Direct, при ошибке переключается на Frames.
 
-Настройка качества через CRF (Constant Rate Factor): меньше значение = выше качество / больше размер.
+-Настройка качества через CRF (Constant Rate Factor): меньше значение = выше качество / больше размер.
 
-Автоматический пропуск файлов, для которых уже есть MP4 в выходной папке.
+-Автоматический пропуск файлов, для которых уже есть MP4 в выходной папке.
 
-Понятный вывод прогресса и итоговая статистика.
+-Понятный вывод прогресса и итоговая статистика.
 
-🔧 Настройки (в начале файла)
-
+### 🔧 Настройки (в начале файла)
+```python
 input_path = r""          # папка с исходными WebM (пусто = текущая папка)
 output_path = r""         # папка для результатов (пусто = создаст подпапку "converted")
 mode = "Auto"             # Direct / Frames / Auto
 crf_default = 18          # качество по умолчанию (18 рекомендуется – визуально без потерь)
 FFMPEG_PATH = "ffmpeg"    # путь к ffmpeg (если не в PATH, укажите полный путь)
 FFPROBE_PATH = "ffprobe"  
-⚠️ При копировании пути с Windows используйте особый тип строки - r"...", где вместо ... Ваш путь к папке, скопированный из Windows. Это поможет избежать ошибки, при которой Python воспримет \U или любой другой символ после косой черты в пути к папке как команду (а ошибка точно будет!).
+```
+**⚠️ При копировании пути с Windows используйте особый тип строки - r"...", где вместо ... Ваш путь к папке, скопированный из Windows. Это поможет избежать ошибки, при которой Python воспримет \U или любой другой символ после косой черты в пути к папке как команду (а ошибка точно будет!).**
 
-🖥️ Пример вывода
-
+### 🖥️ Пример вывода
+```text
 📁 Исходная папка: D:\video
 📁 Папка для результатов: D:\video\converted
 ⚙️ Режим конвертации: Auto
@@ -209,26 +219,28 @@ FFPROBE_PATH = "ffprobe"
    Исходные WebM: 120.5 МБ
    Результат MP4: 141.2 МБ
    Соотношение: 141.2 МБ / 120.5 МБ = 117.2%
+```
 
-🧪 Версия с тестированием – Webm_To_Mp4_Testing.py
+## 🧪 Версия с тестированием – Webm_To_Mp4_Testing.py
 Включает всё то же, что и базовая версия, плюс тестовый модуль, который конвертирует один файл с разными CRF и обоими методами, помогая выбрать оптимальное значение.
 
-➕ Дополнительные настройки тестирования
-
+### ➕ Дополнительные настройки тестирования
+```python
 test_file_path = r"D:\video\sample.webm"   # путь к .webm файлу для теста
 test_output_dir = r""                       # папка для результатов теста (пусто = создаст "compare" рядом со скриптом)
 test_cut_mode = "cut"                        # "default" – всё видео, "cut" – обрезать первые 30 сек (быстрее)
-
-🧪 Как запустить тест
+```
+### 🧪 Как запустить тест
 Укажите реальный путь к .webm файлу в test_file_path.
 
 В функции main() раскомментируйте эти две строки:
-
+```python
 #test_quality_comparison()
 #return
+```
 Запустите скрипт.
 
-📊 Тестируемые значения CRF
+### 📊 Тестируемые значения CRF
 В тесте используются три значения CRF:
 
 CRF 24 – размер близок к исходному (обычно 90–101% от оригинала).
@@ -239,7 +251,7 @@ CRF 14 – избыточно высокое качество; размер ра
 
 Для каждого CRF тестируются оба метода: Direct и Frames.
 
-🔍 Что делает тест
+### 🔍 Что делает тест
 (Опционально) обрезает первые 30 секунд видео для ускорения.
 
 Конвертирует (обрезанное) видео обоими методами со всеми тремя CRF.
@@ -248,10 +260,11 @@ CRF 14 – избыточно высокое качество; размер ра
 
 Выводит сводную таблицу с размерами и процентами.
 
-📈 Пример вывода теста
+### 📈 Пример вывода теста
 
+```text
 🧪 ТЕСТОВЫЙ РЕЖИМ: Сравнение методов и уровней CRF
-   ✂️ Обрезка видео (первые 30 секунд)...
+✂️ Обрезка видео (первые 30 секунд)...
 ✂️ Видео обрезано (режим: cut) -> cut_sample.mp4
 
 📁 Тестовый файл: cut_sample.mp4 (2.1 МБ)
@@ -277,28 +290,30 @@ Frames  14   3.3 МБ     157.1%
    compare\20250315_143022
    (включая обрезанную версию исходного видео)
    (Откройте их любым плеером для визуального сравнения качества)
+```
 
-📦 Требования к системе
+### 📦 Требования к системе
 Установленный FFmpeg (доступный из командной строки, либо пропишите полный путь в FFMPEG_PATH/FFPROBE_PATH).
 
-Python 3.6+ (используются только стандартные библиотеки – ничего дополнительно устанавливать не нужно).
+Python **3.6+** (используются только стандартные библиотеки – ничего дополнительно устанавливать не нужно).
 
-🚀 Запуск скриптов
+### 🚀 Запуск скриптов
 Сохраните нужный .py файл.
 
 При необходимости отредактируйте настройки в начале.
 
 Запустите двойным щелчком или из командной строки:
 
-
+```cmd
 python Webm_To_Mp4_Basic.py
+```
 Следуйте выводу в консоли – программа покажет прогресс и остановится в конце (нажмите Enter для выхода).
 
-🙏 Благодарности
+### 🙏 Благодарности
 Особая благодарность @anttiluode за идею трёх режимов конвертации (Direct, Frames, Auto).
-Его оригинальный проект WebP2Mp4-Converter (также под лицензией MIT) познакомил нас с концепцией обработки проблемных WebP-анимаций через покадровое извлечение, которую мы адаптировали для WebM-видео.
+Именно его проект вдохновил разработчика на написание собственной версии программы.
 
-📝 Лицензия
+### 📝 Лицензия
 Этот проект является открытым и доступен под лицензией MIT.
 
-P.S. Оказывается писать readme сложнее чем питонировать.
+~~P.S. Оказывается писать readme сложнее чем питонировать.~~
